@@ -1,6 +1,7 @@
 
 
 ;(function(global) {
+    
     /**
      * 
      */
@@ -16,28 +17,23 @@
          */
         init: function(query) {
             this.domElement = document.querySelector(query);
+            this.domElement.classList.add('jframe');
         },
 
         /**
          * 
          */
-        run: function(code) {
+        load: function(code) {
             var iframe = document.createElement("iframe");
-            var pre    = document.createElement("pre");
 
             this.domElement.innerHTML = "";
             this.domElement.appendChild(iframe);
-            this.domElement.appendChild(pre);
 
             // フレーム
-            iframe.classList.add('frame');
             var idoc = iframe.contentDocument;
             idoc.open();
             idoc.write(code);
             idoc.close();
-
-            // コンソール
-            pre.classList.add('console');
 
             return this;
         },
@@ -57,5 +53,6 @@
     global.jframe = function(q) {
         return new jframe(q);
     };
+
 })(this);
 
