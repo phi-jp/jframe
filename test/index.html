@@ -1,47 +1,50 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title></title>
-        <script src="../jframe.js"></script>
-        <script>
-        var $q = function(q) {
-            return document.querySelector(q);
-        };
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src="../jframe.js"></script>
+    <script>
+    var $q = function(q) {
+      return document.querySelector(q);
+    };
 
-        window.onload = function() {
-            jframe("#jframe");
+    window.onload = function() {
+      var preview = jframe("#jframe");
 
-            $q("#ta").onkeydown = function(e) {
-                if (e.ctrlKey == true || e.metaKey == true) {
-                    if (e.keyCode == 83) {
-                        run();
-                        return false;
-                    }
-                }
-            };
+      $q("#ta").onkeydown = function(e) {
+        run();
+        // if (e.ctrlKey == true || e.metaKey == true) {
+        //   if (e.keyCode == 83) {
+        //     run();
+        //     return false;
+        //   }
+        // }
+      };
 
-            run();
-        };
+      var run = function() {
+        var ta = $q("#ta");
+        var code = ta.value;
 
-        var run = function() {
-            var ta = $q("#ta");
-            var code = ta.value;
+        // preview.load(code);
+        preview.getDocument().body.innerHTML = code;
+      };
 
-            jframe("#jframe").load(code);
-        };
-        </script>
-    </head>
-    <body>
-        <div>
-            <textarea id="ta" rows=16 cols=41>
+      run();
+    };
+
+    </script>
+  </head>
+  <body>
+    <div>
+      <textarea id="ta" rows=16 cols=41>
 <h1>test of jframe</h1>
 <script>
 console.log("hoge");
 </script>
 </textarea>
-        </div>
-        <div id="jframe"></div>
-    </body>
+    </div>
+    <div id="jframe"></div>
+  </body>
 </html>
