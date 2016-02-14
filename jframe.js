@@ -19,6 +19,12 @@
       this.domElement = document.querySelector(query);
       this.domElement.classList.add('jframe');
       this.load('');
+
+      this.attributes = {};
+    },
+
+    attr: function(key, value) {
+      this.attributes[key] = value;
     },
 
     /**
@@ -26,6 +32,11 @@
      */
     load: function(code) {
       var iframe = document.createElement("iframe");
+
+      for (var key in this.attributes) {
+        var v = this.attributes[key];
+        iframe.setAttribute(key, v);
+      }
 
       this.domElement.innerHTML = "";
       this.domElement.appendChild(iframe);

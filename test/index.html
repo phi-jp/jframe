@@ -12,6 +12,7 @@
 
     window.onload = function() {
       var preview = jframe("#jframe");
+      preview.attr('hoge', 'foo');
 
       $q("#ta").onkeydown = function(e) {
         run();
@@ -27,8 +28,8 @@
         var ta = $q("#ta");
         var code = ta.value;
 
-        // preview.load(code);
-        preview.getDocument().body.innerHTML = code;
+        preview.load(code);
+        // preview.getDocument().body.innerHTML = code;
       };
 
       run();
