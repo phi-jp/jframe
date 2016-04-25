@@ -1,6 +1,6 @@
 /* 
  * jframe 0.0.4
- * jframe
+ * runstant の iframe 部分だけ切り出してみた
  * MIT Licensed
  * 
  * Copyright (C) 2016 phi, http://phiary.me
@@ -9,85 +9,4 @@
 
 'use strict';
 
-
-
-;(function(global) {
-  
-  /**
-   * 
-   */
-  var jframe = function(query) {
-    this.init(query);
-    return this;
-  };
-
-  jframe.prototype = {
-
-    /**
-     * 
-     */
-    init: function(query) {
-      this.domElement = document.querySelector(query);
-      this.domElement.classList.add('jframe');
-      this.load('');
-
-      this.attributes = {};
-    },
-
-    attr: function(key, value) {
-      this.attributes[key] = value;
-    },
-
-    /**
-     * 
-     */
-    load: function(code) {
-      var iframe = document.createElement("iframe");
-
-      for (var key in this.attributes) {
-        var v = this.attributes[key];
-        iframe.setAttribute(key, v);
-      }
-
-      this.domElement.innerHTML = "";
-      this.domElement.appendChild(iframe);
-
-      // for safari(first value becomes 0 for some reason)
-      iframe.contentWindow.innerWidth = window.innerWidth;
-      iframe.contentWindow.innerHeight = window.innerHeight;
-
-      // フレーム
-      var idoc = iframe.contentDocument;
-      idoc.open();
-      idoc.write(code);
-      idoc.close();
-
-      return this;
-    },
-
-    /**
-     * 
-     */
-    reload: function() {
-      var iframe = this.domElement.querySelector("iframe");
-
-      iframe.contentWindow.location.reload();
-
-      return this;
-    },
-
-    getFrame: function() {
-      return this.domElement.children[0];
-    },
-
-    getDocument: function() {
-      return this.getFrame().contentDocument;
-    },
-  };
-
-  global.jframe = function(q) {
-    return new jframe(q);
-  };
-
-})(this);
-
+!function(t){var e=function(t){return this.init(t),this};e.prototype={init:function(t){this.domElement=document.querySelector(t),this.domElement.classList.add("jframe"),this.load(""),this.attributes={}},attr:function(t,e){this.attributes[t]=e},load:function(t){var e=document.createElement("iframe");for(var n in this.attributes){var i=this.attributes[n];e.setAttribute(n,i)}this.domElement.innerHTML="",this.domElement.appendChild(e),e.contentWindow.innerWidth=window.innerWidth,e.contentWindow.innerHeight=window.innerHeight;var r=e.contentDocument;return r.open(),r.write(t),r.close(),this},reload:function(){var t=this.domElement.querySelector("iframe");return t.contentWindow.location.reload(),this},getFrame:function(){return this.domElement.children[0]},getDocument:function(){return this.getFrame().contentDocument}},t.jframe=function(t){return new e(t)}}(this);

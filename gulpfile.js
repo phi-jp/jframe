@@ -30,11 +30,11 @@ var output = './';
 gulp.task('build', function() {
   return gulp
     .src(target)
+    .pipe(uglify())
     .pipe(header(banner, {
       pkg: pkg,
     }))
     .pipe(gulp.dest(output))
-    .pipe(uglify())
     .pipe(rename({
       extname: '.min.js'
     }))
