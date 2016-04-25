@@ -1,3 +1,14 @@
+/* 
+ * jframe 0.0.4
+ * jframe
+ * MIT Licensed
+ * 
+ * Copyright (C) 2016 phi, http://phiary.me
+ */
+
+
+'use strict';
+
 
 
 ;(function(global) {
