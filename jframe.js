@@ -41,6 +41,10 @@
       this.domElement.innerHTML = "";
       this.domElement.appendChild(iframe);
 
+      // for safari(first value becomes 0 for some reason)
+      iframe.contentWindow.innerWidth = window.innerWidth;
+      iframe.contentWindow.innerHeight = window.innerHeight;
+
       // フレーム
       var idoc = iframe.contentDocument;
       idoc.open();
